@@ -1,8 +1,6 @@
 package app.domain;
 
-
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.Set;
@@ -40,6 +38,4 @@ public class Assignment {
     @CollectionTable(name = "assignment_status", joinColumns = @JoinColumn(name = "assignment_id"))
     @Enumerated(EnumType.STRING)
     private Set<Status> status;
-
-
 }

@@ -59,5 +59,4 @@ public class DirectorController {
         assignment.setStatus(Collections.singleton(Status.active));
 
     }
-
 }
