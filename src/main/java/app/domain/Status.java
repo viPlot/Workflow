@@ -1,4 +1,4 @@
-package MVC.domain;
+package app.domain;
 
 public enum Status {
     active,

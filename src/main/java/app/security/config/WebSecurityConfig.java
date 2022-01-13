@@ -1,6 +1,6 @@
-package MVC.security.config;
+package app.security.config;
 
-import MVC.service.UserService;
+import app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

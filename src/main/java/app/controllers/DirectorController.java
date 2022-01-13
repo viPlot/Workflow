@@ -1,16 +1,15 @@
-package MVC.controllers;
+package app.controllers;
 
-import MVC.domain.Assignment;
-import MVC.domain.Status;
-import MVC.domain.User;
-import MVC.repository.AssignmentRepository;
-import MVC.repository.DocumentRepository;
-import MVC.repository.UserRepository;
+import app.domain.Assignment;
+import app.domain.Status;
+import app.domain.User;
+import app.repository.AssignmentRepository;
+import app.repository.DocumentRepository;
+import app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

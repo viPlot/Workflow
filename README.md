@@ -1,2 +1,2 @@
 # SpringDB #7
-Using Spring MVC REST
+Using Spring app REST

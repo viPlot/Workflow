@@ -1,7 +1,7 @@
-package MVC.service;
+package app.service;
 
-import MVC.domain.Document;
-import MVC.repository.DocumentRepository;
+import app.domain.Document;
+import app.repository.DocumentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,9 @@
-package MVC.controllers;
+package app.controllers;
 
-import MVC.domain.Assignment;
-import MVC.domain.Status;
-import MVC.repository.DocumentRepository;
-import MVC.service.DocumentService;
+import app.domain.Assignment;
+import app.domain.Status;
+import app.repository.DocumentRepository;
+import app.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

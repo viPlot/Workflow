@@ -1,9 +1,6 @@
-package MVC.domain;
+package app.domain;
 
-import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-
-import javax.persistence.*;
 
 
 public enum Position implements GrantedAuthority {

@@ -1,7 +1,7 @@
-package MVC.controllers;
+package app.controllers;
 
-import MVC.domain.Assignment;
-import MVC.repository.AssignmentRepository;
+import app.domain.Assignment;
+import app.repository.AssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
