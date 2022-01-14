@@ -26,10 +26,13 @@ public class Assignment {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "creator")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User idCreator;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_executor")
+    private User idExecutor;
 
     @Column(name = "is_document")
     private boolean isDocument;

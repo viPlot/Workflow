@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @Entity
 public class Document implements Serializable {
