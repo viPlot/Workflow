@@ -6,7 +6,6 @@ import app.domain.Status;
 import app.domain.User;
 import app.repository.AssignmentRepository;
 import app.repository.UserRepository;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -36,7 +35,7 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+    public String main(@RequestParam Model model) {
         Iterable<Assignment> assignments = assignmentRepository.findAll();
         model.addAttribute("assignments", assignments);
         return "main";
@@ -59,10 +58,10 @@ public class MainController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
         if (Objects.equals(userRepository.findByEmail(currentUser).getPositions(), Collections.singleton(Position.director))) {
-            assignment.setIdExecutor(userRepository.findByPositions(Collections.singleton(Position.headOfDepartment)));
+            assignment.setIdExecutor(userRepository.findByPositions(Position.headOfDepartment));
         }
         if (Objects.equals(userRepository.findByEmail(currentUser).getPositions(), Collections.singleton(Position.headOfDepartment))) {
-            assignment.setIdExecutor(userRepository.findByPositions(Collections.singleton(Position.departmentSpecialist)));
+            assignment.setIdExecutor(userRepository.findByPositions(Position.departmentSpecialist));
         }
         return "redirect:/main";
     }

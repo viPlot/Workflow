@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1/Docflow
+    username: postgres
+    password: 123
+    initialization-mode: always
+    driver-class-name: org.postgresql.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto update
+      properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect

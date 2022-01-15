@@ -6,57 +6,52 @@ import app.domain.Status;
 import app.repository.DocumentRepository;
 import app.repository.UserRepository;
 import app.service.DocumentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
 import java.util.Objects;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/main/editAssignment")
 public class AssignmentController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private DocumentService documentService;
+    private final DocumentService documentService;
 
-    @Autowired
-    private DocumentRepository documentRepository;
+    private final DocumentRepository documentRepository;
 
-    @GetMapping("{editAssignment}")
+    @GetMapping("/cancel/{assignment}")
     @PreAuthorize("hasAuthority('headOfDepartment') or ('director')")
-    public String cancelAssignment(@RequestParam Assignment assignment) { //отменить поручение = статус cancelled
+    public String cancelAssignment(@PathVariable Assignment assignment) { //отменить поручение = статус cancelled
         assignment.setStatus(Collections.singleton(Status.closed));
         return "/main/editAssignment";
     }
 
-    @GetMapping("{editAssignment}")
+    @GetMapping("/submit/{assignment}")
     @PreAuthorize("hasAuthority('headOfDepartment') or ('director')")
-    public void submitForRevision(@RequestParam Assignment assignment) { //передать поручение = не подписать документ (статус active)
+    public void submitForRevision(@PathVariable Assignment assignment) { //передать поручение = не подписать документ (статус active)
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
         if (Objects.equals(userRepository.findByEmail(currentUser).getPositions(), Collections.singleton(Position.director))) {
             documentRepository.findByIdAssigment(assignment.getId()).setDirectorSignature(false);
-            assignment.setIdExecutor(userRepository.findByPositions(Collections.singleton(Position.headOfDepartment)));
+            assignment.setIdExecutor(userRepository.findByPositions(Position.headOfDepartment));
         }
         if (Objects.equals(userRepository.findByEmail(currentUser).getPositions(), Collections.singleton(Position.headOfDepartment))){
             documentRepository.findByIdAssigment(assignment.getId()).setDepHeadSignature(false);
-            assignment.setIdExecutor(userRepository.findByPositions(Collections.singleton(Position.departmentSpecialist)));
+            assignment.setIdExecutor(userRepository.findByPositions(Position.departmentSpecialist));
         }
         assignment.setStatus(Collections.singleton(Status.active));
     }
 
-    @GetMapping("document")
+    @PostMapping("/upload")
     @PreAuthorize("hasAuthority('departmentSpecialist') or ('headOfDepartment')")
     public void uploadDocument(@RequestParam(name = "form")MultipartFile form) {//загрузить документ
         documentService.uploadDoc(form);
