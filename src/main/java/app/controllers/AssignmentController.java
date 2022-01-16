@@ -5,7 +5,7 @@ import app.domain.Position;
 import app.domain.Status;
 import app.repository.DocumentRepository;
 import app.repository.UserRepository;
-import app.service.DocumentService;
+import app.service.DocumentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -24,7 +24,7 @@ public class AssignmentController {
 
     private final UserRepository userRepository;
 
-    private final DocumentService documentService;
+    private final DocumentServiceImpl documentServiceImpl;
 
     private final DocumentRepository documentRepository;
 
@@ -54,6 +54,7 @@ public class AssignmentController {
     @PostMapping("/upload")
     @PreAuthorize("hasAuthority('departmentSpecialist') or ('headOfDepartment')")
     public void uploadDocument(@RequestParam(name = "form")MultipartFile form) {//загрузить документ
-        documentService.uploadDoc(form);
+        documentServiceImpl.uploadDoc(form);
+
     }
 }

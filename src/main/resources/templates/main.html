@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Docflow</title>
+</head>
+<body>
+<h1>Assignment list</h1>
+<a href="addAssignment.html">Add new assignment</a>
+<br/><br/>
+<div>
+    <table border="2">
+        <tr>
+            <th>name</th>
+            <th>status</th>
+            <th>position of the executor</th>
+            <th>availability of the document</th>
+        </tr>
+        <tr th:each = "assignment :${assignments}">
+            <td th:utext="${assignment.name}"></td>
+            <td th:utext="${assignment.status}"></td>
+            <td th:utext="${assignment.idExecutor}"></td>
+            <td th:utext="${assignment.isDocument}"></td>
+            <td><a href="editAssignment">edit</a></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

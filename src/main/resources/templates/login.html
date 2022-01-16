@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Log In</title>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" method="POST" th:action="@{/login}">
+        <h2 class="form-heading">Sign in Docflow</h2>
+
+        <div class="form-group">
+            <span th:text="${message}"></span>
+            <input name="username" type="text" class="form-control" placeholder="Email"
+                   autofocus="true"/>
+
+            <input name="password" type="password" class="form-control" placeholder="Password"/>
+            <span class="has-error" th:text="${error}"></span>
+
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
