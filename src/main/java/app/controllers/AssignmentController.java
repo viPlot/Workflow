@@ -55,6 +55,5 @@ public class AssignmentController {
     @PreAuthorize("hasAuthority('departmentSpecialist') or ('headOfDepartment')")
     public void uploadDocument(@RequestParam(name = "form")MultipartFile form) {//загрузить документ
         documentServiceImpl.uploadDoc(form);
-
     }
 }
