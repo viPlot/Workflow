@@ -14,11 +14,14 @@ public class DocumentServiceImpl implements DocumentService{
 
     @Override
     @SneakyThrows
-    public void uploadDoc(MultipartFile document) {
+    public Document uploadDoc(MultipartFile document) {
         var bytes = document.getBytes();
         if (bytes.length != 0) {
             var doc = new Document(document.getBytes());
             documentRepository.save(doc);
+            doc.setFilename(document.getName());
+            return doc;
         }
+        return null;
     }
 }

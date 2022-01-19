@@ -8,7 +8,7 @@
     <title>Add assignment</title>
 </head>
 <body>
-    <h1>Create a assignment</h1>
+    <h1>Create assignment</h1>
     <form th:action="@{/addAssignment}" th:object="${assignment}" method="post">
         Assignment name:
         <input type="text" th:field="*{name}"/>
@@ -19,5 +19,7 @@
     style="color: red; font-style:italic;">
 
     </div>
+<div>    <a href="main.html">Back to assignment list</a>
+</div>
 </body>
 </html>

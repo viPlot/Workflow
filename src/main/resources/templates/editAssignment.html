@@ -8,7 +8,7 @@
     <title>Edit assignment</title>
 </head>
 <body>
-    <h1>Edit a assignment</h1>
+    <h1>Edit assignment</h1>
     <form th:action="@{/cancel/{assignment}}" th:object="${assignment}" method="post">
         If you want to cancel this assignment press
         <input type="submit" value="Cancel assignment"/>
@@ -17,10 +17,6 @@
         If you want to submit this assignment fo revision press
         <input type="submit" value="Submit to revision"/>
     </form>
-    <form th:action="@{/upload}" th:object="${assignment}" method="post">
-        If you want to upload a document for this assignment press
-        <input type="submit" value="Upload document"/>
-    </form>
-    <a href="main.html">Back to assignment list</a>
+    <div><a href="main.html">Back to assignment list</a></div>
 </body>
 </html>

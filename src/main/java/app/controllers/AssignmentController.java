@@ -5,14 +5,12 @@ import app.domain.Position;
 import app.domain.Status;
 import app.repository.DocumentRepository;
 import app.repository.UserRepository;
-import app.service.DocumentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -23,8 +21,6 @@ import java.util.Objects;
 public class AssignmentController {
 
     private final UserRepository userRepository;
-
-    private final DocumentServiceImpl documentServiceImpl;
 
     private final DocumentRepository documentRepository;
 
@@ -49,11 +45,5 @@ public class AssignmentController {
             assignment.setIdExecutor(userRepository.findByPositions(Position.departmentSpecialist));
         }
         assignment.setStatus(Collections.singleton(Status.active));
-    }
-
-    @PostMapping("/upload")
-    @PreAuthorize("hasAuthority('departmentSpecialist') or ('headOfDepartment')")
-    public void uploadDocument(@RequestParam(name = "form")MultipartFile form) {//загрузить документ
-        documentServiceImpl.uploadDoc(form);
     }
 }
